@@ -1,0 +1,42 @@
+在工程属性 C/C++选项中    Preprocessor 下
+ Additional include directories:  下  添加如下内容
+$PROJ_DIR$\..\library\inc
+$PROJ_DIR$\..\library\src
+$PROJ_DIR$\..\library\core
+$PROJ_DIR$\..\USER
+
+内容说明如下：
+   $PROJ_DIR$ 为IAR包含路径关键字 表示当前工程文件目录
+   $PROJ_DIR$\..\ 意思是当前工程文件目录上级目录
+   $PROJ_DIR$\..\FWlib\inc  具体包含路径
+   
+   
+IAR的警告:
+Warning[Pa050]: non-native end of line sequence detected (this diagnostic is only issued once).
+
+先来说说这个警告产生的原因: 在Windows中换行符使用<CR><LF>来表示换行, 在UNIX类系统中则使用<LF>. 当一个文件从一个系统转换到另外一个系统, 因为换行符的定义不同, 就会产生问题.
+
+知道了原因, 但问题依然不好解决. 有时候可能有几百个上千个文件从Linux平台转到Windown平台编译, 总不能一个一个的改吧? 好在此警告对结果并没影响, 所以采取简单粗暴的方式, 将它屏蔽掉, 眼不见心不烦.
+打开工程选项, 选择C/C++ Compiler, Diagnostics选项卡, 在Suppress these diagnostics 中填入警告的类型, OK,  收工.
+
+
+
+
+
+IAR 生成 S19文件   HEX文件  BIN文件    SIM文件
+http://www.go-gddq.com/html/QianRuShiXiTong-JiShu/2012-11/1062663.htm
+
+属性中output Converter 选项   把 Generate additonal output打勾
+                                 Motorola              为生成S19文件
+                                 Intel extended        为生成HEX文件
+                                 binary                为生成Bin文件
+                                 simple                为生成Sim文件
+ 勾选Override default  为更改生成文件名
+ 
+ 
+
+
+
+
+
+
